@@ -19,3 +19,19 @@ docker run -dit --publish=80:80 --name=hapmap hapmap:latest
 ```
 
 Then go to http://localhost to see the application.
+
+NOTE: For development:
+
+```
+git clone https://github.com/UofS-Pulse-Binfo/haplotype-map.git
+cd haplotype-map
+docker build ./ --tag=hapmap
+docker run -dit --publish=80:80  --volume=`pwd`:/app --name=hapmap hapmap:latest
+```
+
+Then you can make changes in your local clone and run the following command to see them reflected in the docker:
+
+```
+docker exec -it hapmap npm install
+docker exec -it hapmap npm run build
+```
