@@ -8,3 +8,14 @@ This fork is **focused on settings to make this web-app compatible with Drupal/T
 ### Original Source
 
 For any difficulties with the visualization directly, please go back to the original repository: https://github.com/kiranbandi/haplotype-map
+
+## Docker
+
+To test this web app using docker:
+
+```
+docker build ./ --tag=hapmap
+docker run -dit --publish=80:80 --name=hapmap hapmap:latest
+```
+
+Then go to http://localhost to see the application.
