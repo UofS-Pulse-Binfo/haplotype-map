@@ -33,7 +33,7 @@ Then you can make changes in your local clone and run the following command to s
 
 ```
 docker exec -it hapmap npm install
-docker exec -it hapmap npm run build
+docker exec -it hapmap npm run build --webPath=""
 ```
 
 ## Tips
