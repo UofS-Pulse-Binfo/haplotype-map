@@ -19,6 +19,7 @@
         "clean": "rimraf dist/bundle/*",
         "release": "npm run build",
         "deploy": "npm run build-code && npm run deploy-gh",
+        "check-env": "node -e 'console.log(process.env)'",
         "deploy-gh": "gh-pages -d dist"
     },
     "author": "kiranbandi <bvenkatkiran@gmail.com>",

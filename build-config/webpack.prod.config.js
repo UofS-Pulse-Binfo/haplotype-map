@@ -1,6 +1,7 @@
 'use strict';
 var webpack = require("webpack");
 var path = require("path");
+const webpath = process.env.npm_config_webpath || 'haplotype-map-tree/';
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -14,7 +15,7 @@ module.exports = {
     plugins: [new webpack.DefinePlugin({
         'process.env': {
             NODE_ENV: JSON.stringify('production'),
-            DATADIR_PATH: JSON.stringify('')
+            DATADIR_PATH: JSON.stringify(webpath)
         }
     }),
     new TerserPlugin({
