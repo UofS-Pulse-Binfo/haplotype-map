@@ -35,3 +35,11 @@ Then you can make changes in your local clone and run the following command to s
 docker exec -it hapmap npm install
 docker exec -it hapmap npm run build
 ```
+
+## Tips
+
+- You can set the web path to the data dir when building your application. This is important if the app is having trouble finding your data. For example, if this application is served from http://www.example.ca/haplotype-map then you would pass that information in as follows:
+
+```
+npm run build --webPath="haplotype-map/"
+```
