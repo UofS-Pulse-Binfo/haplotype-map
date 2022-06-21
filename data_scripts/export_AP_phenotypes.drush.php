@@ -60,7 +60,7 @@ $trait_query = "
 $pheno_query = "
   SELECT 
     p.attr_id || '-' || p.assay_id || '-' || p.unit_id as code,
-    avg(cast(p.value as decimal)) as value 
+    round(avg(cast(p.value as numeric)), 3) as value 
   FROM chado.phenotype p  
   WHERE 
     p.value ~ '^-?\d*\.?\d+$' 
