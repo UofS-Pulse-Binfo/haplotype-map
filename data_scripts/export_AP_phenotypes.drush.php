@@ -60,5 +60,5 @@ $pheno_query = "
 // Getting the Data
 //--------------------------
 
-$germplasm = chado_query($germ_query, [':project_id' => $experiment_id])->fetchKeyed(0,1);
+$germplasm = chado_query($germ_query, [':project_id' => $experiment_id])->fetchAllKeyed(0,1);
 print_r($germplasm);
