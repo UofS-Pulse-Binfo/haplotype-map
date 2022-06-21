@@ -66,8 +66,8 @@ $pheno_query = "
     p.value ~ '^-?\d*\.?\d+$' 
     AND p.stock_id= :stock_id
     AND p.project_id = :project_id
-  SORT BY p.attr_id ASC, p.assay_id ASC, p.unit_id ASC
-  GROUP BY p.attr_id, p.assay_id, p.unit_id";
+  GROUP BY p.attr_id, p.assay_id, p.unit_id
+  ORDER BY p.attr_id ASC, p.assay_id ASC, p.unit_id ASC";
 
 // Getting the Data
 //--------------------------
