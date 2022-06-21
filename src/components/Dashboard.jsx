@@ -76,7 +76,7 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        const { actions, source = 'BN' } = this.props,
+        const { actions, source = 'AGILE-Activity2' } = this.props,
             { setLoaderState, setGenomicData, setDashboardDefaults } = actions,
             fullpath = window.location.protocol + '//' + window.location.host + '/' + process.env.DATADIR_PATH,
             hapmapFilepath = fullpath + 'data/' + source + '_lines.txt',
