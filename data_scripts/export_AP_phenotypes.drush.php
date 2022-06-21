@@ -53,7 +53,7 @@ $trait_query = "
   WHERE 
     p.value ~ '^-?\d*\.?\d+$' 
     AND p.project_id = :project_id
-  GROUP BY attr.name, assay.name, unit.name
+  GROUP BY p.attr_id, p.assay_id, p.unit_id, attr.name, assay.name, unit.name
   ORDER BY p.attr_id ASC, p.assay_id ASC, p.unit_id ASC";
 
 // Select an averaged value for each germplasm with the specified experiment.
