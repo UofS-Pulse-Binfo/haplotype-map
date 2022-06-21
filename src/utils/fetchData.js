@@ -14,7 +14,7 @@ fetchData.getAndProcessFile = function(filepath, fileType) {
             // if there is an error  reject the promise and let user know through toast
             .catch((err) => {
                 alert("Failed to fetch and parse the " + fileType + ' file', "ERROR");
-                console.log("Failed to fetch: " + filepath);
+                console.log("Failed to fetch and process: " + filepath);
                 reject();
             })
     });
@@ -28,6 +28,7 @@ fetchData.getFile = function(filepath, fileType) {
             // if there is an error  reject the promise and let user know through toast
             .catch((err) => {
                 alert("Failed to fetch the" + fileType + ' file', "ERROR");
+                console.log("Failed to fetch: " + filepath);
                 reject();
             })
     });
