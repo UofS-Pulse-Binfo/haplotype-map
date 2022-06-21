@@ -1,9 +1,12 @@
 'use strict';
 var webpack = require("webpack");
 var path = require("path");
-const webpath = process.env.npm_config_webpath || 'haplotype-map-tree/';
+var webpath = process.env.npm_config_webpath || 'haplotype-map-tree/';
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// Remove single leading "/" if it is present.
+if (webpath.charAt( 0 ) === '/') { webpath = webpath.substring(1); }
 
 module.exports = {
     entry: ['babel-polyfill', './src/app.jsx'],
