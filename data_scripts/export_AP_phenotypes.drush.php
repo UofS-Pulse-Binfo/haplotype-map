@@ -43,6 +43,7 @@ $trait_query = "
 	SELECT
 		p.attr_id || '-' || p.assay_id || '-' || p.unit_id as code,
     attr.name as trait, 
+    '' as trait_abbrev,
     assay.name as method, 
     unit.name as unit
 	FROM chado.phenotype p
@@ -53,7 +54,7 @@ $trait_query = "
     p.value ~ '^-?\d*\.?\d+$' 
     AND p.project_id = :project_id
   GROUP BY attr.name, assay.name, unit.name
-";
+  ORDER BY p.attr_id ASC, p.assay_id ASC, p.unit_id ASC";
 
 // Select an averaged value for each germplasm with the specified experiment.
 // NOTE: we are averaging across site years here only. Grouping by trait-method-unit combo for a specific experiment and germplasm.
@@ -75,8 +76,25 @@ $pheno_query = "
 // Get the list of germplasm for this experiment.
 $germplasm = chado_query($germ_query, [':project_id' => $experiment_id])->fetchAllKeyed(0,1);
 
+// Add the trait header.
+$traits = chado_query($trait_query, [':project_id' => $experiment_id])->fetchAllAssoc('code', PDO::FETCH_ASSOC);
+$traits_header = [];
+$i = 0;
+foreach ($traits as $code => $v) {
+  $trait_tooltip = '(Trait: ' . $v['trait'] . '<br />Method:' . $v['method'] . '<br />Unit:' . $v['unit'] . ')';
+	if (empty($v['trait_abbrev'])) {
+		$i++;
+		$traits[$code]['trait_abbrev'] = 'T' . $i;
+		$traits_header[$code] = '"T' . $i . '-' . $trait_tooltip . '"';
+	}
+	else {
+		$traits_header[$code] = '"' . $v['trait_abbrev'] . '-' . $trait_tooltip . '"';
+	}
+}
+print "\t" . implode("\t",$data) . "\n";
+
 // For each germplasm, get the data for all traits and print it to the screen.
 foreach ($germplasm as $stock_id => $germplasm_name) {
-  $data = chado_query($pheno_query, [':project_id' => $experiment_id, ':stock_id' => $stock_id])->fetchAllKeyed(0,1);
+	$data = chado_query($pheno_query, [':project_id' => $experiment_id, ':stock_id' => $stock_id])->fetchAllKeyed(0,1);
 	print $germplasm_name . "\t" . implode("\t",$data) . "\n";
 }
