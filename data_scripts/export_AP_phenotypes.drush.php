@@ -34,10 +34,10 @@ else {
 
 // Select the germplasm that have phenotypes for that project.
 $germ_query = "
-  SELECT p.stock_id, s.name 
-  FROM chado.stock s
+  SELECT stock_id, name 
+  FROM chado.stock
   WHERE
-    s.stock_id IN (SELECT stock_id from chado.phenotype WHERE project_id = :project_id)";
+    stock_id IN (SELECT stock_id from chado.phenotype WHERE project_id = :project_id)";
 
 // Select an averaged value for each germplasm with the specified experiment.
 // NOTE: we are averaging across site years here only. Grouping by trait-method-unit combo for a specific experiment and germplasm.
