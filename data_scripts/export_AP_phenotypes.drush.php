@@ -25,6 +25,9 @@ if (empty($experiment_id)) {
 elseif (count($experiment_id) > 1) {
 	return drush_set_error('TOO_MANY_EXP', "The experiment name you provided is not unique in the database. Too many results returned.");
 }
+else {
+	$experiment_id = (int) $experiment_id[0];
+}
 
 // QUERIES
 //--------------------------
