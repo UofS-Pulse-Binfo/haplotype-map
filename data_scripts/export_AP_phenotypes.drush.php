@@ -39,26 +39,44 @@ $germ_query = "
   WHERE
     stock_id IN (SELECT stock_id from chado.phenotype WHERE project_id = :project_id)";
 
-// Select an averaged value for each germplasm with the specified experiment.
-// NOTE: we are averaging across site years here only. Grouping by trait-method-unit combo for a specific experiment and germplasm.
-$pheno_query = "
-  SELECT 
+$trait_query = "
+	SELECT
+		p.attr_id || '-' || p.assay_id || '-' || p.unit_id as code,
     attr.name as trait, 
     assay.name as method, 
-    unit.name as unit, 
-    avg(cast(p.value as decimal)) as value 
-  FROM chado.phenotype p 
+    unit.name as unit
+	FROM chado.phenotype p
   LEFT JOIN chado.cvterm attr ON attr.cvterm_id=p.attr_id 
   LEFT JOIN chado.cvterm assay ON assay.cvterm_id=p.assay_id 
   LEFT JOIN chado.cvterm unit ON unit.cvterm_id=p.unit_id 
   WHERE 
     p.value ~ '^-?\d*\.?\d+$' 
+    AND p.project_id = :project_id
+  GROUP BY attr.name, assay.name, unit.name
+";
+
+// Select an averaged value for each germplasm with the specified experiment.
+// NOTE: we are averaging across site years here only. Grouping by trait-method-unit combo for a specific experiment and germplasm.
+$pheno_query = "
+  SELECT 
+    p.attr_id || '-' || p.assay_id || '-' || p.unit_id as code,
+    avg(cast(p.value as decimal)) as value 
+  FROM chado.phenotype p  
+  WHERE 
+    p.value ~ '^-?\d*\.?\d+$' 
     AND p.stock_id= :stock_id
     AND p.project_id = :project_id
-  GROUP BY attr.name, assay.name, unit.name";
+  SORT BY p.attr_id ASC, p.assay_id ASC, p.unit_id ASC
+  GROUP BY p.attr_id, p.assay_id, p.unit_id";
 
 // Getting the Data
 //--------------------------
 
+// Get the list of germplasm for this experiment.
 $germplasm = chado_query($germ_query, [':project_id' => $experiment_id])->fetchAllKeyed(0,1);
-print_r($germplasm);
+
+// For each germplasm, get the data for all traits and print it to the screen.
+foreach ($germplasm as $stock_id => $germplasm_name) {
+  $data = chado_query($pheno_query, [':project_id' => $experiment_id, ':stock_id' => $stock_id])->fetchAllKeyed(0,1);
+	print $germplasm_name . "\t" . implode("\t",$data) . "\n";
+}
