@@ -5,7 +5,7 @@ import NavigationPanel from './NavigationPanel';
 import { scaleLinear } from 'd3';
 import { CHART_WIDTH } from '../utils/chartConstants';
 
-// This is a wrapper component for the three controlled 
+// This is a wrapper component for the three controlled
 // sub components that come into play when a chromosome is selected
 // these three sub components are interlinked to each other
 // intricately through the start region and end region values of the genome window

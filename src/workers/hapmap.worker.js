@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-// worker written in vanilla javascript 
+// worker written in vanilla javascript
 export function process(hapmapData) {
 
     var FileLines = hapmapData.split('\n'),
@@ -36,7 +36,7 @@ export function process(hapmapData) {
             startIndex = referenceMap[0].index,
             end = referenceMap[referenceMap.length - 1].position,
             endIndex = referenceMap[referenceMap.length - 1].index;
-        // add only if chromosomeID is valid 
+        // add only if chromosomeID is valid
         // for now let the test factor be containing "Ch"
         if (chromID.length <= 3) {
             genomeMap[chromID] = { chromID, referenceMap, start, end, startIndex, endIndex };

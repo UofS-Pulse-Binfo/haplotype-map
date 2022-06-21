@@ -21,7 +21,7 @@ class ChromosomeMap extends Component {
 
     componentDidUpdate(previousProps) {
         // only draw the chart again if the linemap and genomemap have changed
-        // or if the selected line index has been updated 
+        // or if the selected line index has been updated
         if (((this.props.genomeMap !== previousProps.genomeMap) && (this.props.lineMap !== previousProps.lineMap)) ||
             (this.props.selectedLine !== previousProps.selectedLine)) {
             this.drawChart();

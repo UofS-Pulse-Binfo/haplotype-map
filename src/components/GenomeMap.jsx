@@ -42,7 +42,7 @@ class GenomeMap extends Component {
                     drawChart(this['canvas-' + chrom], subWidth, subLineMap, subGenomeMap, subCNVMap, lineNames, selectedLineIndex);
                 }
             });
-            // Also draw labels for each line 
+            // Also draw labels for each line
             drawLabels(this['canvas-label'], lineNames, isColorActiveInLabels, selectedLineIndex);
 
         }
@@ -69,7 +69,7 @@ class GenomeMap extends Component {
                 drawChart(this['canvas-' + chrom], subWidth, subLineMap, subGenomeMap, subCNVMap, lineNames, selectedLineIndex);
             }
         });
-        // Also draw labels for each line 
+        // Also draw labels for each line
         drawLabels(this['canvas-label'], lineNames, isColorActiveInLabels, selectedLineIndex);
     }
 
@@ -147,7 +147,7 @@ function getChromosomeVectors(genomeMap) {
         availableWidth = CHART_WIDTH - ((validChromosomeList.length - 1) * 5),
         totalMarkerCount = _.reduce(validChromosomeList,
             ((acc, chr) => acc + genomeMap[chr].referenceMap.length), 0);
-    // create a scale for the entire chromosome 
+    // create a scale for the entire chromosome
     chromosomeScale = scaleLinear().domain([0, totalMarkerCount]).range([0, availableWidth]);
     return { validChromosomeList, chromosomeScale };
 }
@@ -170,6 +170,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenomeMap);
-
-
-

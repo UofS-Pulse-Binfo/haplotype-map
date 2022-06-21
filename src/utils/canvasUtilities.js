@@ -64,14 +64,14 @@ function drawWhiskers(context, duplicatedCNVs = [], deletedCNVs = []) {
     context.lineWidth = 3;
     context.strokeStyle = 'rgba(0,0,0,0.75)';
     // First create a list of markers from both DUP and DEL that are
-    // more than 5 pixels wide then draw them as whiskers 
+    // more than 5 pixels wide then draw them as whiskers
     duplicatedCNVs.concat(deletedCNVs)
         .filter((d) => d.dx > 5)
         .map((whisker) => {
             context.moveTo(whisker.x - (whisker.dx / 2), whisker.y);
             context.lineTo(whisker.x + (whisker.dx / 2), whisker.y);
         });
-    // complete drawing the whiskers 
+    // complete drawing the whiskers
     context.stroke();
 }
 
@@ -111,14 +111,14 @@ canvasUtilities.drawTracks = function (canvas, trackCollection) {
 
     let trackGroup = _.groupBy(trackCollection, (d) => d.type);
 
-    // First draw the base color 
+    // First draw the base color
     let baseLine = trackGroup['base'][0];
     context.strokeStyle = baseLine.color;
     context.moveTo(Math.round(baseLine.start), baseLine.yPosition);
     context.lineTo(Math.round(baseLine.end), baseLine.yPosition);
     context.stroke();
 
-    // Then draw all the other tracks over it 
+    // Then draw all the other tracks over it
     context.beginPath();
     _.map(trackGroup['track'], (line) => {
         context.strokeStyle = line.color;
@@ -185,8 +185,8 @@ function drawRotatedText(endingX, centerY, radianAngle, text, ctx) {
     ctx.translate(endingX, centerY);
     // rotate to the desired angle
     ctx.rotate(radianAngle);
-    // set the text baseline so the text 
-    // is vertically centered on the endpoint 
+    // set the text baseline so the text
+    // is vertically centered on the endpoint
     ctx.textBaseline = 'middle';
     // draw the text offset by the negative width
     // so the text ends at the desired endpoint

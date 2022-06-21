@@ -98,7 +98,7 @@ class RegionMap extends Component {
             regionStart, regionEnd, germplasmData, colorScheme } = this.props;
 
         //   to get the nucleotide data, move the start index by the start of the chromosome
-        // so we are in the right position 
+        // so we are in the right position
         let modifiedLineMap = _.map(lineMap, (l) => ({
             'lineName': l.lineName,
             'lineData': l.lineData.slice(regionStart, regionEnd),
@@ -115,7 +115,7 @@ class RegionMap extends Component {
 
             modifiedChartScale = chartScale.copy().domain([0, (regionEnd - regionStart) - 1]);
 
-        // TODO quick hack, dump to window so that tooltip can do a quick read 
+        // TODO quick hack, dump to window so that tooltip can do a quick read
         window.referenceScale = modifiedChartScale;
         window.referenceMap = modifiedGenomeMap.referenceMap;
 
@@ -129,8 +129,8 @@ class RegionMap extends Component {
         drawLinesByColor(this.canvas, generateLinesFromMap(modifiedLineMap, modifiedChartScale, selectedLineIndex));
 
 
-        // If the user is zoomed in far enough show the actual nucleotides 
-        // and the SNP labels 
+        // If the user is zoomed in far enough show the actual nucleotides
+        // and the SNP labels
         if ((regionEnd - regionStart) < 90) {
 
             const SNPLocusNames = _.map(modifiedGenomeMap.referenceMap, (d) => d.locusName.toLocaleUpperCase()),
@@ -144,7 +144,7 @@ class RegionMap extends Component {
 
             if (selectedAllSNPIndex != -1) {
                 //   to get the nucleotide data, move the start index by the start of the chromosome
-                // so we are in the right position 
+                // so we are in the right position
                 let modifiedLineMapSNP = _.map(lineMap, (l) => ({
                     'lineName': l.lineName,
                     'lineData': l.lineData.slice(selectedAllSNPIndex, selectedAllSNPIndex + 1),
@@ -274,7 +274,7 @@ function drawXAxisPoisitonalMarkers(genomeMap, lineNames, context, xScale) {
         xScale.range()[1] - xScale.range()[0], TRACK_HEIGHT);
     context.stroke();
 
-    // for each marker draw 3 lines 
+    // for each marker draw 3 lines
     //  the first line is inside the chromosome rect
     //  the second line is a straight line on the linemap
     //  the third line connects these two

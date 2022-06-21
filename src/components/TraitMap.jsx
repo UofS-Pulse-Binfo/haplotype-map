@@ -32,7 +32,7 @@ class TraitMap extends Component {
             .range([0, width]);
 
         const xBoxSize = width / (traitList.length);
-        // Each text character takes around 8px so 
+        // Each text character takes around 8px so
         // so only trim to the size the text can fit in the box
         const trimFactor = xBoxSize / 8;
 
