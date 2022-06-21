@@ -91,7 +91,7 @@ foreach ($traits as $code => $v) {
 		$traits_header[$code] = '"' . $v['trait_abbrev'] . '-' . $trait_tooltip . '"';
 	}
 }
-print "\t" . implode("\t",$data) . "\n";
+print "\t" . implode("\t",$traits_header) . "\n";
 
 // For each germplasm, get the data for all traits and print it to the screen.
 foreach ($germplasm as $stock_id => $germplasm_name) {
