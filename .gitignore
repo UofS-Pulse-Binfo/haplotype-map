@@ -1,6 +1,7 @@
 # Data
 dist/data/*.txt
-
+dist/data/*.gff3
+dist/bundle/*
 # Logs
 logs
 *.log
