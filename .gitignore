@@ -1,3 +1,6 @@
+# Data
+dist/data/*.txt
+
 # Logs
 logs
 *.log
