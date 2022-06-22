@@ -5,6 +5,8 @@ USER root
 
 COPY . /app
 
+EXPOSE 3000
+
 RUN chmod -R +x /app && apt-get update 1> ~/aptget.update.log \
   && apt-get install git curl gcc make libpng-dev --yes -qq 1> ~/aptget.extras.log
 
