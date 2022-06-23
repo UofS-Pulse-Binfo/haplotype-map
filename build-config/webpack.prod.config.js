@@ -13,7 +13,8 @@ module.exports = {
     output: {
         path: path.resolve("dist/bundle"),
         filename: "[name].bundle.haplotype-map.[chunkhash].js",
-        chunkFilename: "[name].haplotype-map.js"
+        chunkFilename: "[name].haplotype-map.js",
+        globalObject: 'this'
     },
     plugins: [new webpack.DefinePlugin({
         'process.env': {
