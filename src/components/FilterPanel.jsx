@@ -98,17 +98,17 @@ class FilterPanel extends Component {
                 </div>
               </div>
               <div class="additional-filter-panel inner-filter-panel m-t">
-                {referenceType == 'none' && <div className="compare-select target-lines">
+                {referenceType == 'none' && <div className="compare-select target-lines large-select">
                     <span className='inner-span'>Target Lines</span>
                     <ReactSelect
                         isMulti
                         className='select-box'
                         value={modifiedTargetLines}
                         options={lineOptions}
-                        styles={selectStyle}
+                        styles={largeSelectStyle}
                         onChange={this.onTargetChange} />
                 </div>}
-                {referenceType == 'trait' && <div className="compare-select active-traits">
+                {referenceType == 'trait' && <div className="compare-select active-traits large-select">
                     <span className='inner-span'>Active Traits</span>
                     <ReactSelect
                         key='trait-enabler'
@@ -116,7 +116,7 @@ class FilterPanel extends Component {
                         className='select-box source'
                         value={activeTraits}
                         options={traitOptions}
-                        styles={selectStyle}
+                        styles={largeSelectStyle}
                         onChange={this.onActiveTraitChange} />
                 </div>}
                 {referenceType == 'trait' && <div className="compare-select order-by-trait">
@@ -163,6 +163,17 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(FilterPanel);
 
 const selectStyle = {
+    option: (styles) => ({
+        ...styles,
+        color: 'black', textAlign: 'left'
+    })
+};
+const largeSelectStyle = {
+    control: base => ({
+        ...base,
+        height: '154px',
+        minHeight: '154px'
+    }),
     option: (styles) => ({
         ...styles,
         color: 'black', textAlign: 'left'

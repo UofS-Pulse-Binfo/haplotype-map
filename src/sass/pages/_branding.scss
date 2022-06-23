@@ -73,6 +73,10 @@ body {
         .target-lines .select-box {
             width:100%;
         }
+
+        .large-select .select-box div {
+          overflow: scroll;
+        }
       }
 
       .compare-button.apply {
