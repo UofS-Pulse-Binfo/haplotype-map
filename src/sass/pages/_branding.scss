@@ -26,7 +26,8 @@ body {
 
   #header {
     margin: 0 auto;
-    width: 900px;
+    padding-top: 30px;
+    width: 75%;
   }
 
   #content-wrapper {
@@ -40,7 +41,50 @@ body {
       margin: 0 75px;
       margin-top: 0px;
       height: 300px;
-      border: 1px solid white;
+      display: inline-flex;
+      justify-content: space-around;
+
+      .inner-filter-panel {
+        flex: none;
+        width: 40%;
+        padding: 20px 50px;
+
+        .compare-select {
+          .inner-span {
+            width: 125px;
+            color: #314355;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: white 0px 0px 8px;
+          }
+        }
+      }
+
+      .core-filter-panel {
+        padding: 20px 50px;
+
+        .select-box {
+          width: 250px;
+        }
+      }
+      .additional-filter-panel {
+        padding: 20px 50px;
+
+        .target-lines .select-box {
+            width:100%;
+        }
+      }
+
+      .compare-button.apply {
+        border: 1px solid #3A7F21;
+        background-color: rgba(255,255,255, 0.50);
+        color: #3A7F21;
+        font-weight: 500;
+      }
+      .compare-button.apply:hover {
+        background-color: #3F7209;
+        color: white;
+      }
     }
   }
 

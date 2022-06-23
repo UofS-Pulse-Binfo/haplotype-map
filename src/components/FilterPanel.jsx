@@ -15,8 +15,8 @@ const colorSchemes = [{ 'label': 'Difference from source line', 'value': 'differ
 { 'label': 'Highlight heterozygous pairs', 'value': 'hetero' }];
 
 const orderingSchemes = [
-    { 'label': 'Dendogram Clustering', 'value': 'tree' },
     { 'label': 'Trait features', 'value': 'trait' },
+    { 'label': 'Dendogram Clustering', 'value': 'tree' },
     { 'label': 'Manual Selection', 'value': 'none' }];
 
 class FilterPanel extends Component {
@@ -67,8 +67,9 @@ class FilterPanel extends Component {
         const activeTraits = _.map(activeTraitList, (d) => ({ 'label': d, 'value': d }));
 
         return (
-            <div className='filter-panel m-t text-center'>
-                <div className="compare-select">
+            <div className='filter-panel m-t'>
+              <div class="core-filter-panel inner-filter-panel m-t">
+                <div className="compare-select line-ordering">
                     <span className='inner-span'>Line Ordering</span>
                     <ReactSelect
                         className='select-box color-scheme'
@@ -77,7 +78,7 @@ class FilterPanel extends Component {
                         styles={selectStyle}
                         onChange={this.onReferenceTypeChange} />
                 </div>
-                <div className="compare-select">
+                <div className="compare-select colour-scheme">
                     <span className='inner-span'>Colour Scheme</span>
                     <ReactSelect
                         className='select-box color-scheme'
@@ -86,7 +87,7 @@ class FilterPanel extends Component {
                         styles={selectStyle}
                         onChange={this.onColorSchemeChange} />
                 </div>
-                <div className="compare-select">
+                <div className="compare-select reference-line">
                     <span className='inner-span'>Reference Line</span>
                     <ReactSelect
                         className='select-box source'
@@ -95,7 +96,9 @@ class FilterPanel extends Component {
                         styles={selectStyle}
                         onChange={this.onSourceChange} />
                 </div>
-                {referenceType == 'none' && <div className="compare-select">
+              </div>
+              <div class="additional-filter-panel inner-filter-panel m-t">
+                {referenceType == 'none' && <div className="compare-select target-lines">
                     <span className='inner-span'>Target Lines</span>
                     <ReactSelect
                         isMulti
@@ -105,7 +108,7 @@ class FilterPanel extends Component {
                         styles={selectStyle}
                         onChange={this.onTargetChange} />
                 </div>}
-                {referenceType == 'trait' && <div className="compare-select">
+                {referenceType == 'trait' && <div className="compare-select active-traits">
                     <span className='inner-span'>Active Traits</span>
                     <ReactSelect
                         key='trait-enabler'
@@ -116,7 +119,7 @@ class FilterPanel extends Component {
                         styles={selectStyle}
                         onChange={this.onActiveTraitChange} />
                 </div>}
-                {referenceType == 'trait' && <div className="compare-select">
+                {referenceType == 'trait' && <div className="compare-select order-by-trait">
                     <span className='inner-span'>Order by Trait</span>
                     <ReactSelect
                         key='trait-order-selector'
@@ -127,9 +130,10 @@ class FilterPanel extends Component {
                         styles={selectStyle}
                         onChange={this.onTraitChange} />
                 </div>}
-                <button className='btn btn-primary-outline compare-button'
-                    onClick={this.props.triggerCompare}> REDRAW
-                    </button>
+              </div>
+              <button className='btn btn-primary-outline compare-button apply'
+                    onClick={this.props.triggerCompare}> Apply
+                </button>
             </div>
         );
     }
