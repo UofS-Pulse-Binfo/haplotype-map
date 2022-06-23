@@ -15,7 +15,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
 
 WORKDIR /app
 
-RUN npm install && npm run build --webPath=""
+RUN npm install && npm run build --webPath="/"
 
 RUN rm -r /usr/local/apache2/htdocs \
 	&& cd /usr/local/apache2 \
