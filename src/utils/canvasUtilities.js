@@ -1,6 +1,7 @@
 import { MATCH_COLOR, MISSING_COLOR, COLOR_LIST, TRACK_HEIGHT, LABEL_WIDTH } from './chartConstants';
 
 var canvasUtilities = {};
+const defaultColour = '#314355';
 
 canvasUtilities.clearAndGetContext = function (canvas) {
     let context = canvas.getContext('2d');
@@ -147,7 +148,7 @@ canvasUtilities.drawLabels = function (canvas, labels, isColorActive = false, se
 
         context.beginPath();
         context.font = "bold 10px Arial";
-        context.fillStyle = yIndex == 0 ? MATCH_COLOR : isColorActive ? COLOR_LIST[yIndex - 1] : '#1ca8dd';
+        context.fillStyle = yIndex == 0 ? MATCH_COLOR : isColorActive ? COLOR_LIST[yIndex - 1] : defaultColour;
         context.fillText(name, 10, 12 + (yIndex * TRACK_HEIGHT));
     });
 }
@@ -159,7 +160,7 @@ canvasUtilities.drawSNPNames = function (canvas, SNPLocusNames, chartScale, sele
     context.textBaseline = "middle";
     context.beginPath();
     context.font = "bold 10px Arial";
-    context.fillStyle = '#1ca8dd';
+    context.fillStyle = defaultColour;
 
     _.map(SNPLocusNames, (name, xIndex) => {
 
@@ -169,7 +170,7 @@ canvasUtilities.drawSNPNames = function (canvas, SNPLocusNames, chartScale, sele
         }
         else {
             context.font = "bold 10px Arial";
-            context.fillStyle = '#1ca8dd';
+            context.fillStyle = defaultColour;
         }
 
         drawRotatedText(chartScale(xIndex) + (chartScale(1) / 2), 57, -Math.PI / 4, name, context);

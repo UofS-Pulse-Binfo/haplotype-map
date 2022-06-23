@@ -90,6 +90,35 @@ body {
         color: white;
       }
     }
+
+    // Green region headers
+    .text-primary {
+      color: #3A7F21;
+    }
+    // Navy blue tree labels
+    .treemap-container text {
+      fill: #314355;
+    }
+    // Green Buttons.
+    .btn-primary-outline.active, .btn-primary-outline.focus,
+      .btn-primary-outline:active, .btn-primary-outline:focus,
+      .btn-primary-outline:hover, .open > .dropdown-toggle.btn-primary-outline {
+        color: #fff;
+        background-color: #3F7209;
+        box-shadow: none;
+    }
+    .btn-primary-outline {
+      color: #3A7F21;
+      background-color: transparent;
+      border-color: #3F7209;
+    }
+    // Green zoom slider.
+    .rc-slider-track {
+      background-color: #e2f4d7;
+    }
+    .rc-slider-handle {
+      border-color: #e2f4d7;
+    }
   }
 
   #footer-wrapper {
