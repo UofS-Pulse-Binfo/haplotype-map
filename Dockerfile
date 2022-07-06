@@ -1,5 +1,4 @@
 FROM httpd:bullseye
-MAINTAINER Lacey-Anne Sanderson <laceyannesanderson@gmail.com>
 
 USER root
 
